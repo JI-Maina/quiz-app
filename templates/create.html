@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}Create Question — World Cup 2026 Quiz{% endblock %}
+
+{% block content %}
+<section class="page-header">
+  <h1>Create a Question</h1>
+  <p>Fill in the form. When your <code>POST /api/questions</code> endpoint works, new questions are saved to the backend.</p>
+</section>
+
+<form id="create-form" class="quiz-form">
+  <div class="form-group">
+    <label for="question">Question</label>
+    <input type="text" id="question" name="question" required
+           placeholder="Which three countries host World Cup 2026?">
+  </div>
+
+  <div class="form-group">
+    <label for="option-a">Option A</label>
+    <input type="text" id="option-a" name="option-a" required placeholder="USA, Canada, Mexico">
+  </div>
+  <div class="form-group">
+    <label for="option-b">Option B</label>
+    <input type="text" id="option-b" name="option-b" required placeholder="Brazil, Argentina, Chile">
+  </div>
+  <div class="form-group">
+    <label for="option-c">Option C</label>
+    <input type="text" id="option-c" name="option-c" required placeholder="England, France, Germany">
+  </div>
+
+  <div class="form-group">
+    <label for="answer">Correct answer (must match one option exactly)</label>
+    <input type="text" id="answer" name="answer" required placeholder="USA, Canada, Mexico">
+  </div>
+
+  <div class="form-group">
+    <label for="fun-fact">Fun fact (optional)</label>
+    <input type="text" id="fun-fact" name="fun-fact" placeholder="First time three countries host together!">
+  </div>
+
+  <button type="submit" class="btn btn-primary btn-block">Save Question</button>
+</form>
+
+<div id="create-message" class="message-box" hidden></div>
+
+<section class="tip-box">
+  <h3>Backend tip</h3>
+  <p>Open <code>app.py</code> and complete <code>create_question()</code>. The frontend sends JSON like:</p>
+  <pre class="code-block">{
+  "question": "...",
+  "options": ["A", "B", "C"],
+  "answer": "A",
+  "fun_fact": "..."
+}</pre>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/create.js') }}"></script>
+{% endblock %}

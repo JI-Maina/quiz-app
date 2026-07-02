@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Results — World Cup 2026 Quiz{% endblock %}
+
+{% block content %}
+<section class="page-header">
+  <h1>Quiz Results</h1>
+  <p>Your latest score appears here after you submit. All scores load from <code>GET /api/results</code>.</p>
+</section>
+
+<div id="latest-result" class="result-hero" hidden>
+  <div class="result-hero-label">Your last score</div>
+  <div class="result-hero-score" id="latest-score">0/0</div>
+  <div class="result-hero-name" id="latest-name"></div>
+</div>
+
+<div id="results-loading" class="status-box">Loading results from API...</div>
+<div id="results-error" class="message-box message-box--error" hidden></div>
+<div id="results-empty" class="status-box" hidden>
+  <p>No results yet. <a href="/play">Play the quiz</a> first!</p>
+</div>
+
+<section id="results-list-section" hidden>
+  <h2>Leaderboard</h2>
+  <div id="results-list" class="results-list"></div>
+</section>
+
+<section id="details-section" class="details-section" hidden>
+  <h2>Question breakdown</h2>
+  <div id="details-list"></div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/results.js') }}"></script>
+{% endblock %}

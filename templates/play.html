@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Play Quiz — World Cup 2026 Quiz{% endblock %}
+
+{% block content %}
+<section class="page-header">
+  <h1>Play the Quiz</h1>
+  <p>Questions load from <code>GET /api/questions</code>. Submit goes to <code>POST /api/play/submit</code>.</p>
+</section>
+
+<div id="play-loading" class="status-box">Loading questions from API...</div>
+<div id="play-error" class="message-box message-box--error" hidden></div>
+<div id="play-empty" class="status-box" hidden>
+  <p>No questions yet! <a href="/create">Create some first</a>.</p>
+</div>
+
+<form id="play-form" class="quiz-form" hidden>
+  <div class="form-group">
+    <label for="player-name">Your name</label>
+    <input type="text" id="player-name" name="player-name" required placeholder="Amina">
+  </div>
+
+  <div id="questions-container"></div>
+
+  <button type="submit" class="btn btn-primary btn-block">Submit Answers</button>
+</form>
+
+<div id="submit-message" class="message-box" hidden></div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/play.js') }}"></script>
+{% endblock %}
